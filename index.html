@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Control Ingresos - Salsa/Bachata</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Pantalla de Bloqueo (Login) -->
+  <div id="screen-lock" class="lock-overlay">
+    <div class="lock-content">
+      <h2>Acceso Restringido</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 20px;">Ingrese el PIN de seguridad</p>
+      
+      <div class="pin-text-container" style="min-height: 40px; margin-bottom: 30px; font-size: 2rem; letter-spacing: 10px; color: var(--primary-color);">
+        <span id="pin-asterisks"></span>
+      </div>
+
+      <div class="keypad-grid">
+        <button type="button" class="btn-key" data-key="1">1</button>
+        <button type="button" class="btn-key" data-key="2">2</button>
+        <button type="button" class="btn-key" data-key="3">3</button>
+        <button type="button" class="btn-key" data-key="4">4</button>
+        <button type="button" class="btn-key" data-key="5">5</button>
+        <button type="button" class="btn-key" data-key="6">6</button>
+        <button type="button" class="btn-key" data-key="7">7</button>
+        <button type="button" class="btn-key" data-key="8">8</button>
+        <button type="button" class="btn-key" data-key="9">9</button>
+        <button type="button" class="btn-key action-key" data-key="clear">Borrar</button>
+        <button type="button" class="btn-key" data-key="0">0</button>
+        <button type="button" class="btn-key action-key" data-key="ok">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="app-content" style="display: none;">
+    <header>
+      <h1>Control Evento</h1>
+    </header>
+
+  <main>
+    <!-- Screen 1: Registration -->
+    <section id="screen-registration" class="screen active">
+      <h2>Nuevo Ingreso</h2>
+      <form id="form-registration">
+        <div class="form-group">
+          <label for="nombre">Nombre del Asistente</label>
+          <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Tipo de Entrada</label>
+          <div class="btn-group-type">
+            <button type="button" class="btn-type" data-value="2x1">2x1</button>
+            <button type="button" class="btn-type" data-value="Preventa">Preventa</button>
+            <button type="button" class="btn-type" data-value="General">General</button>
+          </div>
+          <input type="hidden" id="tipo_entrada" required>
+        </div>
+
+        <div class="form-group">
+          <label for="valor">Valor a Pagar</label>
+          <input type="text" id="valor" value="$0" readonly>
+        </div>
+
+        <button type="submit" class="btn-primary">Confirmar Ingreso</button>
+      </form>
+    </section>
+
+    <!-- Screen 2: Active Event -->
+    <section id="screen-active-event" class="screen hidden">
+      <h2>Evento Actual</h2>
+      
+      <div class="stats-card">
+        <h3>Total Recaudado</h3>
+        <p class="counter" id="total_acumulado">$0</p>
+        <span class="sub-counter" id="total_asistentes">0 asistentes hoy</span>
+      </div>
+
+      <h3>Lista de Ingresos</h3>
+      <ul id="lista-asistentes" class="attendee-list">
+        <!-- JS populates -->
+      </ul>
+    </section>
+
+    <!-- Screen 3: Monthly Report -->
+    <section id="screen-report" class="screen hidden">
+      <h2>Reportes y Respaldo</h2>
+      <div class="backup-actions">
+        <button type="button" id="btn-export-csv" class="btn-export">📥 Exportar CSV</button>
+        <label for="input-import-csv" class="btn-import">📤 Importar CSV</label>
+        <input type="file" id="input-import-csv" accept=".csv" style="display:none">
+      </div>
+      <div id="monthly-stats-container">
+        <!-- JS populates -->
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-target="screen-registration">Registro</button>
+    <button class="nav-btn" data-target="screen-active-event">En Vivo</button>
+    <button class="nav-btn" data-target="screen-report">Reportes</button>
+  </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
