@@ -26,7 +26,7 @@ let currentPin = "";
 const PRICING = {
   '2x1': 4000,
   'Preventa': 4000,
-  'General': 6000
+  'General': 5000
 };
 
 // State
